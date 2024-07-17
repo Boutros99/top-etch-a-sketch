@@ -7,6 +7,7 @@ let gridWidth = grid.offsetWidth;
 let gridHeight = grid.offsetHeight;
 
 let isRainbowModeOn=false; /* a variable used to know if the last mode before resizing the grid is rainbow mode */
+let isShadowModeOn=false; /* a variable used to know if the last mode before resizing the grid is shadow mode */
 
 
 
@@ -60,7 +61,7 @@ function resetGridColor() {
     const pixelList=document.querySelectorAll(".pixel");
     pixelList.forEach((button) => {
         button.style.background = "beige";
-        button.style.opacity=1;
+        isShadowModeOn==true? button.style.opacity=0 : button.style.opacity=1;
         });
 }
 
@@ -68,10 +69,10 @@ function resetGridColor() {
 
 /* set the event listeners with a standard color*/
 function setNormalColorEvent() {
+    resetGridColor();
     const pixelList=document.querySelectorAll(".pixel");
 
     pixelList.forEach((button) => {
-        button.style.opacity=1;
         button.addEventListener("mouseenter", function (e) {
             e.target.style.background = "black"
         });
@@ -88,10 +89,10 @@ function createRandomRbGCode() {
 
 
 function setRainbowColorEvent() {
+    resetGridColor();
     const pixelList=document.querySelectorAll(".pixel");
 
     pixelList.forEach((button) => {
-        button.style.opacity=1;
         button.addEventListener("mouseenter", function (e) {
             e.target.style.background = createRandomRbGCode()
         });
@@ -101,6 +102,7 @@ function setRainbowColorEvent() {
 /* Set the color mode to shadow */
 
 function setShadowColorEvent() {
+    resetGridColor();
     const pixelList=document.querySelectorAll(".pixel");
 
     pixelList.forEach((button) => {
@@ -127,7 +129,11 @@ sizeButton.addEventListener("click", () => {
     deleteGrid();
     let dimensionInput=inputDimension();
     createGrid(dimensionInput);
-    isRainbowModeOn==true?setRainbowColorEvent():setNormalColorEvent();
+    if (isRainbowModeOn==true) {
+        setRainbowColorEvent();
+    } else if (isShadowModeOn==true) {
+        setShadowColorEvent();
+    } else setNormalColorEvent();
 
 })
 
@@ -142,6 +148,7 @@ resetButton.addEventListener("click",() =>{
 const rainbowMode=document.querySelector("#rainbowMode");
 rainbowMode.addEventListener("click",() =>{
     isRainbowModeOn=true;
+    isShadowModeOn=false;
     setRainbowColorEvent();
 } ) 
 
@@ -149,6 +156,7 @@ rainbowMode.addEventListener("click",() =>{
 const normalMode=document.querySelector("#normalMode");
 normalMode.addEventListener("click",() =>{
     isRainbowModeOn=false;
+    isShadowModeOn=false;
     setNormalColorEvent();
 } ) 
 
@@ -157,5 +165,6 @@ normalMode.addEventListener("click",() =>{
 const shadowMode=document.querySelector("#shadowMode");
 shadowMode.addEventListener("click",() =>{
     isRainbowModeOn=false;
+    isShadowModeOn=true;
     setShadowColorEvent();
 } ) 
