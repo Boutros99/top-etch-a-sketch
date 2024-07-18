@@ -37,7 +37,6 @@ function createGrid(gridDimension) {
 }; 
 
 
-
 /*Different functions to use  */
 
 /* Delete the grid */
