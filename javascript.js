@@ -14,6 +14,8 @@ let isShadowModeOn=false; /* a variable used to know if the last mode before res
 
 /* Grid Functions */
 
+/* Didn't use wrap because when reducing the window without the pixel dimension in % they would overflow from the containe, perhaps the loop is not usefull now*/
+
 function createGrid(gridDimension) {
     let pixelSize=100/gridDimension;
     let row;
@@ -124,12 +126,13 @@ function setShadowColorEvent() {
 
 /* Event listeners on buttons */
 
-/* new grid creation  NB: the grid color is set to normal by default*/
+/* new grid creation */
 const sizeButton=document.querySelector("#sizeButton");
 sizeButton.addEventListener("click", () => {
     deleteGrid();
     let dimensionInput=inputDimension();
     createGrid(dimensionInput);
+    /* to keep the previous color mode */
     if (isRainbowModeOn==true) {
         setRainbowColorEvent();
     } else if (isShadowModeOn==true) {
