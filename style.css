@@ -29,6 +29,7 @@ body {
 .pageTitle {
     text-align: center;
     font-size: 50px;
+    margin-bottom: 0px;
 }
 
 
@@ -52,4 +53,26 @@ body {
 
 button {
     padding: 10px;
+}
+
+.text {
+    margin: 0 ;
+    padding : 5px;
+    padding-left: 10px;
+    padding-right: 10px ;
+
+    border-radius: 0.5pc;
+}
+
+#welcomeMessage.text {
+    background-color: pink;
+    border-style: solid;
+    border-color:  blueviolet;
+    font-weight: bold;
+}
+
+.explenations.text {
+    background-color: aqua;
+    border-style: solid;
+    border-color: blue;
 }

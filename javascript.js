@@ -5,12 +5,13 @@
 let grid = document.querySelector(".gridSection");
 let gridWidth = grid.offsetWidth;
 let gridHeight = grid.offsetHeight;
+let welcomeMessage= document.getElementById("welcomeMessage")
 let gridColor = 'slategrey'
 
 let isRainbowModeOn=false; /* a variable used to know if the last mode before resizing the grid is rainbow mode */
 let isShadowModeOn=false; /* a variable used to know if the last mode before resizing the grid is shadow mode */
 
-
+let isDrawing = false /* a variable used to know if the user wants to draw while hovering */
 
 /* Grid Functions */
 
@@ -76,7 +77,7 @@ function setNormalColorEvent() {
 
     pixelList.forEach((button) => {
         button.addEventListener("mouseenter", function (e) {
-            e.target.style.background = "black"
+            if (isDrawing==true) e.target.style.background = "black" ;
         });
     });
 }
@@ -96,7 +97,7 @@ function setRainbowColorEvent() {
 
     pixelList.forEach((button) => {
         button.addEventListener("mouseenter", function (e) {
-            e.target.style.background = createRandomRbGCode()
+            if (isDrawing==true) e.target.style.background = createRandomRbGCode();
         });
     });
 }
@@ -111,9 +112,11 @@ function setShadowColorEvent() {
         button.style.opacity=0;
 
         button.addEventListener("mouseenter", function (e) {
-            e.target.style.background = "black";
-            let currentOpacity = Number(e.target.style.opacity);
-            currentOpacity<1 ? e.target.style.opacity= currentOpacity +0.1 : e.target.style.opacity=1;
+            if (isDrawing==true) {
+                e.target.style.background = "black";
+                let currentOpacity = Number(e.target.style.opacity);
+                currentOpacity<1 ? e.target.style.opacity= currentOpacity +0.1 : e.target.style.opacity=1;
+            };
         });
     });
 }
@@ -121,6 +124,11 @@ function setShadowColorEvent() {
 
 
 
+function draw() {
+    grid.addEventListener("click" , () => {
+        isDrawing==false ? isDrawing=true : isDrawing=false ;
+    }) ;
+}
 
 
 /* Event listeners on buttons */
@@ -128,6 +136,9 @@ function setShadowColorEvent() {
 /* new grid creation */
 const sizeButton=document.querySelector("#sizeButton");
 sizeButton.addEventListener("click", () => {
+
+    welcomeMessage.style.display="none";
+
     deleteGrid();
     let dimensionInput=inputDimension();
     createGrid(dimensionInput);
@@ -171,3 +182,6 @@ shadowMode.addEventListener("click",() =>{
     isShadowModeOn=true;
     setShadowColorEvent();
 } ) 
+
+/* Function to launch at init */
+draw() 
