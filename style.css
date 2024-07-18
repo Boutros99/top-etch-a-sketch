@@ -36,8 +36,8 @@ body {
     flex-direction: column;
     background-color: black;
     max-width: 720px;
-    height: 720px;
-    flex : 1 1 1;
+    max-height: 720px;
+    flex : 1 1 auto;
     aspect-ratio: 1/1;
     justify-content: center;
 } 

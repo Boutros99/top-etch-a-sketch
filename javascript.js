@@ -23,12 +23,12 @@ function createGrid(gridDimension) {
     for (let i=1 ; i<=gridDimension; i++) {
         row = document.createElement("div");
         row.classList.toggle("row")
-        row.setAttribute("style",` height : ${pixelSize}% ; background : ${gridColor} ; flex: 1 1 0 ; display : flex ; margin:0px ; padding : 0px` );
+        row.setAttribute("style",` height : ${pixelSize}% ; background : ${gridColor} ; flex: 1 1 auto ; display : flex ; margin:0px ; padding : 0px` );
 
         for (let j=1 ; j<=gridDimension; j++) {
             pixel = document.createElement("div");
             pixel.classList.toggle("pixel")
-            pixel.setAttribute("style",` height : 100% ; width : ${pixelSize}% ;aspect-ratio: 1/1; border : 1px solid black ; background : ${gridColor}; flex: 1 1 0` );
+            pixel.setAttribute("style",` height : 100% ; width : ${pixelSize}% ;aspect-ratio: 1/1; border : 1px solid black ; background : ${gridColor}; flex: 1 1 auto` );
             row.appendChild(pixel);   
         }
 
