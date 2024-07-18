@@ -5,6 +5,7 @@
 let grid = document.querySelector(".gridSection");
 let gridWidth = grid.offsetWidth;
 let gridHeight = grid.offsetHeight;
+let gridColor = 'slategrey'
 
 let isRainbowModeOn=false; /* a variable used to know if the last mode before resizing the grid is rainbow mode */
 let isShadowModeOn=false; /* a variable used to know if the last mode before resizing the grid is shadow mode */
@@ -14,18 +15,18 @@ let isShadowModeOn=false; /* a variable used to know if the last mode before res
 /* Grid Functions */
 
 function createGrid(gridDimension) {
-    let pixelSize=gridHeight/gridDimension;
+    let pixelSize=100/gridDimension;
     let row;
     let pixel;
     for (let i=1 ; i<=gridDimension; i++) {
         row = document.createElement("div");
         row.classList.toggle("row")
-        row.setAttribute("style",` height : ${pixelSize}px ; background : beige ; flex: 1 1 0 ; display : flex ; margin:0px ; padding : 0px` );
+        row.setAttribute("style",` height : ${pixelSize}% ; background : ${gridColor} ; flex: 1 1 0 ; display : flex ; margin:0px ; padding : 0px` );
 
         for (let j=1 ; j<=gridDimension; j++) {
             pixel = document.createElement("div");
             pixel.classList.toggle("pixel")
-            pixel.setAttribute("style",` height : ${pixelSize}px ; width : ${pixelSize}px ;aspect-ratio: 1/1; border : 1px solid black ; background : beige; flex: 1 1 0` );
+            pixel.setAttribute("style",` height : 100% ; width : ${pixelSize}% ;aspect-ratio: 1/1; border : 1px solid black ; background : ${gridColor}; flex: 1 1 0` );
             row.appendChild(pixel);   
         }
 
@@ -60,7 +61,7 @@ function inputDimension() {
 function resetGridColor() {
     const pixelList=document.querySelectorAll(".pixel");
     pixelList.forEach((button) => {
-        button.style.background = "beige";
+        button.style.background = gridColor;
         isShadowModeOn==true? button.style.opacity=0 : button.style.opacity=1;
         });
 }
